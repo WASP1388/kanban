@@ -1,3 +1,5 @@
+{{ Vite::useBuildDirectory('build/kanban')->withEntryPoints(['resources/js/app.js']) }}
+
 <div class="column-container grid grid-cols-1 md:grid-cols-3 gap-6"
         data-controller="board"
         data-board-task-selector-value=".task-list"

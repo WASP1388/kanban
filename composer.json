@@ -1,6 +1,6 @@
 {
     "name": "wasp1388/kanban",
-    "description": "Kanban boards for Orchid",
+    "description": "Kanban boards for Laravel",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -22,7 +22,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "WASP1388\\Kanban\\OrchidKanbanServiceProvider"
+                "WASP1388\\Kanban\\KanbanServiceProvider"
             ]
         }
     }
