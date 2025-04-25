@@ -2,14 +2,30 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "dev": "vite",
         "build": "vite build",
-        "dev": "vite"
+        "prepublishOnly": "npm run build"
     },
     "devDependencies": {
         "axios": "^1.8.2",
         "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^1.2.0",
-        "vite": "^6.2.4",
-        "sortablejs": "^1.13.0"
-    }
+        "sortablejs": "^1.13.0",
+        "vite": "^6.3.3"
+    },
+    "name": "kanban",
+    "version": "1.0.0",
+    "description": "A laravel kanban (https://github.com/WASP1388/kanban) library.",
+    "main": "vite.config.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/WASP1388/kanban.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/WASP1388/kanban/issues"
+    },
+    "homepage": "https://github.com/WASP1388/kanban#readme"
 }

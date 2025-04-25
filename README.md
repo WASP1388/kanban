@@ -1,136 +1,55 @@
-# Laravel Kanban
+# Laravel Kanban Package
 
-A laravel wrapper for the [jkanban](https://github.com/riktar/jkanban) library.
+Пакет `kanban` предоставляет готовую инфраструктуру для работы с Kanban-досками в Laravel. Он включает серверную и клиентскую части, а также легко интегрируется в проект благодаря сервис-провайдеру и системе публикации ресурсов.
 
-## Installation
+## Установка
 
-You can install this package using composer.
+1. Установите пакет через Composer:
+   ```bash
+   composer require wasp1388/kanban
+   ```
 
-```shell
-composer require jinoantony/laravel-kanban
-```
+2. Зарегистрируйте сервис-провайдер в конфигурации Laravel (если не используется автообнаружение):
+   ```php
+   WASP1388\Kanban\KanbanServiceProvider::class,
+   ```
 
-This package supports package auto-discovery, so you don't have to register it manually. If you want to manually register the provider, add the following line to `config/app.php` file.
+3. Опубликуйте ресурсы пакета:
+   ```bash
+   php artisan vendor:publish --tag=kanban-assets
+   ```
 
+4. (Опционально) Опубликуйте конфигурацию Vite:
+   ```bash
+   php artisan vendor:publish --tag=kanban-vite-config
+   ```
+
+## Использование
+
+### Представления
+Включите представления пакета в вашем приложении:
 ```php
-JinoAntony\Kanban\LaravelKanbanServiceProvider::class,
+@include('kanban::board')
 ```
 
-## Usage
-
-This package uses [jkanban](https://github.com/riktar/jkanban) library under the hood. So don't forget to include `jkanban.min.js` and `jkanban.min.css` in your view files.
-
-### Create kanban boards
-
-You can use the artisan command to generate kanban boards.
-
-```shell
-php artisan kanban:make TaskKanban
-```
-
-This will create a new file `TaskKanban` in the `app/Kanban` directory.
-
-By default the structure for the kanban board is like this.
-
+### Маршруты
+Используйте маршруты, связанные с `KanbanController`, для обработки запросов. Например:
 ```php
-class TaskKanban extends Kanban
-{
-    /**
-     * Get the list of boards
-     *
-     * @return KBoard[]
-     */
-    public function getBoards()
-    {
-        return [
-            KBoard::make('board1')
-                ->setTitle('Board1 title')
-                ->canDragTo('board2'),
-
-            KBoard::make('board2')
-                ->setTitle('Board2 title')
-                ->canDragTo('board3'),
-
-            KBoard::make('board3')
-                ->setTitle('Board3 title')
-                ->canDragTo('board2')
-                ->canDragTo('board1'),
-        ];
-    }
-
-    /**
-     * Get the data for each board
-     *
-     * @return array
-     */
-    public function data()
-    {
-        return [
-            'board1' => [
-                KItem::make('1')
-                    ->setContent('Item1'),
-                KItem::make('2')
-                    ->setContent('Item2'),
-            ],
-            'board2' => [
-                KItem::make('3')
-                    ->setContent('Item3'),
-                KItem::make('4')
-                    ->setContent('Item4'),
-            ],
-            'board3' => [
-                KItem::make('5')
-                    ->setContent('Item5'),
-                KItem::make('6')
-                    ->setContent('Item6'),
-            ],
-        ];
-    }
-
-    public function build()
-    {
-        return $this->element('.kanban-board')
-            ->margin('20px')
-            ->width('365px');
-    }
-
-}
+Route::get('/kanban', [\WASP1388\Kanban\Http\Controllers\KanbanController::class, 'index']);
 ```
 
-Create a view to render the board.
+### Фронтенд
+1. Убедитесь, что ресурсы пакета опубликованы в директорию `public/wasp1388/kanban`.
+2. Настройте Vite для сборки JavaScript и CSS, если требуется.
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Kanban</title>
-    <link rel="stylesheet" href="{{ asset('css/jkanban.min.css') }}" />
-</head>
-<body>
-    <div class="kanban-board"></div>
-    
-    <script src="{{ asset('js/jkanban.min.js') }}"></script>
-    {!! $kanban->scripts() !!}
-</body>
-</html>
-```
+## Команды Artisan
+Если пакет включает кастомные Artisan-команды, они будут зарегистрированы автоматически при использовании консоли.
 
-Then in your controller,
+## Структура пакета
+- **`resources/views`**: Blade-шаблоны для отображения Kanban-доски.
+- **`resources/js`**: JavaScript-файлы для клиентской логики.
+- **`src/Http/Controllers/KanbanController.php`**: Контроллер для обработки запросов.
+- **`vite.config.js`**: Конфигурация для сборки фронтенд-ресурсов.
 
-```php
-use App\Kanban\TaskKanban;
-
-class TaskController extends Controller
-{
-    public function get(TaskKanban $kanban)
-    {
-        return $kanban->render('kanban');
-    }
-}
-```
-
-Now add a route in `web.php`.
-
-```php
-Route::get('task', 'TaskController@get');
-```
+## Лицензия
+Этот пакет распространяется под лицензией MIT.

@@ -1,0 +1,8 @@
+{
+  "resources/js/index.js": {
+    "file": "kanban.umd.js",
+    "name": "index",
+    "src": "resources/js/index.js",
+    "isEntry": true
+  }
+}
