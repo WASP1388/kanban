@@ -12,17 +12,18 @@ export default defineConfig({
     build: {
         outDir: 'dist', // Папка для собранных файлов
         emptyOutDir: true,
-        lib: {
-            name: 'kanban',
-            entry: 'resources/js/app.js',
-            formats: ['es', 'umd'],
-            fileName: (format) => `kanban.${format}.js`,
-        },
+        // lib: {
+        //     name: 'kanban',
+        //     entry: 'resources/js/app.js',
+        //     formats: ['es', 'umd'],
+        //     fileName: (format) => `kanban.${format}.js`,
+        // },
         
         rollupOptions: {
             output: {
                 assetFileNames: 'assets/[name].[hash][extname]',
                 entryFileNames: 'assets/[name].[hash].js',
+                manualChunks: undefined,
             },
         },
         
