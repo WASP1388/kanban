@@ -1,10 +1,10 @@
-@vite('wasp1388/kanban/assets/app.js')
+@vite('resources/js/app.js')
 
 <div class="column-container grid grid-cols-1 md:grid-cols-3 gap-6"
         data-controller="board"
         data-board-task-selector-value=".task-list"
-        data-board-column-action-value="{{ route('platform.board.column.update') }}"
-        data-board-task-action-value="{{ route('platform.board.task.update') }}"
+        data-board-column-action-value="{{ route('platform.kanban.board.column.update') }}"
+        data-board-task-action-value="{{ route('platform.kanban.board.task.update') }}"
         data-board-success-message-value="Успешно"
         data-board-failure-message-value="Ошибка">
     @foreach($board->columns as $column)
