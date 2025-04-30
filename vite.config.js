@@ -12,26 +12,27 @@ export default defineConfig({
     build: {
         outDir: 'dist', // Папка для собранных файлов
         emptyOutDir: true,
-        // lib: {
-        //     name: 'kanban',
-        //     entry: 'resources/js/app.js',
-        //     formats: ['es', 'umd'],
-        //     fileName: (format) => `kanban.${format}.js`,
-        // },
-        
-        rollupOptions: {
-            output: {
-                assetFileNames: 'assets/[name].[hash][extname]',
-                entryFileNames: 'assets/[name].[hash].js',
-                manualChunks: undefined,
-            },
+        lib: {
+            entry: 'resources/js/app.js',
+            name: 'OrchidKanban',
+            fileName: 'orchid-kanban',
+            //formats: ['es', 'umd'],
+            //fileName: (format) => `kanban.${format}.js`,
         },
         
-        resolve: {
-            alias: {
-                '@': resolve(__dirname, './resources/js'),
-            },
-        }
+        // rollupOptions: {
+        //     output: {
+        //         assetFileNames: 'assets/[name].[hash][extname]',
+        //         entryFileNames: 'assets/[name].[hash].js',
+        //         manualChunks: undefined,
+        //     },
+        // },
+        
+        // resolve: {
+        //     alias: {
+        //         '@': resolve(__dirname, './resources/js'),
+        //     },
+        // }
         
     },
 });

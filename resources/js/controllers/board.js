@@ -38,7 +38,6 @@ export default class extends window.Controller {
 
 
     reorderTasks(evt) {
-        console.log(evt);
         let order = Array.from(evt.to.children).map(item => item.dataset.id);
         let taskId = evt.item.dataset.id;
         let columnId = evt.to.dataset.statusId;
@@ -47,8 +46,7 @@ export default class extends window.Controller {
                 task_id: taskId, 
                 column_id: columnId, 
                 order: order 
-            }
-
+            };
         axios
             .post(this.taskActionValue, params)
             .then(() => this.toast(this.successMessageValue))
@@ -64,7 +62,7 @@ export default class extends window.Controller {
         let params = 
             { 
                 order: order 
-            }
+            };
 
         axios
             .post(this.columnActionValue, params)

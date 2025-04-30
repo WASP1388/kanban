@@ -3,6 +3,8 @@
 namespace WASP1388\Kanban;
 
 use WASP1388\Kanban\Http\Controllers\KanbanController;
+use WASP1388\Kanban\Console\Commands\PublishAssetsCommand;
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 
@@ -33,19 +35,19 @@ class KanbanServiceProvider extends ServiceProvider
 
         // Публикация Vite-ресурсов
         $this->publishes([
-            __DIR__.'/../resources/js' => public_path('wasp1388/kanban'),
+            //__DIR__.'/../resources/js' => public_path('wasp1388/kanban'),
             __DIR__.'/../dist' => public_path('wasp1388/kanban'),
         ], 'kanban-assets');
         
         // Публикация конфигурации Vite (опционально)
-        $this->publishes([
-            __DIR__.'/../vite.config.js' => base_path('vite.config.kanban.js'),
-        ], 'kanban-vite-config');
+        //$this->publishes([
+        //    __DIR__.'/../vite.config.js' => base_path('vite.config.kanban.js'),
+        //], 'kanban-vite-config');
 
         // Регистрация команд Artisan (опционально)
         if ($this->app->runningInConsole()) {
             $this->commands([
-                // Ваши команды
+                PublishAssetsCommand::class,
             ]);
         }
         

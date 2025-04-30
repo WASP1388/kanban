@@ -57,6 +57,7 @@ class BoardScreen extends Screen
         // Validate form data, save task to database, etc.
         $request->validate([
             'task.name' => 'required|max:255',
+            'task.column_id' => 'required|integer',
         ]);
 
         $task = new Task();

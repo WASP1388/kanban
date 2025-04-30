@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->boolean('active')->default(1);
             $table->text('description')->nullable();
-            $table->foreignId('column_id')->nullable()->constrained();
+            $table->foreignId('column_id')->nullable()->constrained('wasp1388_kanban_columns');
             $table->integer('order')->nullable();
             $table->timestamps();
         });

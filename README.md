@@ -12,19 +12,27 @@
 2. Зарегистрируйте сервис-провайдер в конфигурации Laravel (если не используется автообнаружение):
    ```php
    WASP1388\Kanban\KanbanServiceProvider::class,
-   ```
 
-3. Опубликуйте ресурсы пакета:
+3. Выполните публикацию сервис-провайдера:
+   ```bash
+   php artisan vendor:publish --provider="WASP1388\Kanban\KanbanServiceProvider"
+   ```
+## Дополнительно
+
+1. Вручную опубликуйте ресурсы пакета командой (если не выполнена публикация сервис-провайдера):
    ```bash
    php artisan vendor:publish --tag=kanban-assets
    ```
 
-4. (Опционально) Опубликуйте конфигурацию Vite:
+2. Переопубликуйте artisan командой, если были внесены изменения в ресурсы:
    ```bash
-   php artisan vendor:publish --tag=kanban-vite-config
+   php artisan kanban:publish-assets
    ```
 
 ## Использование
+
+
+
 
 ### Представления
 Включите представления пакета в вашем приложении:

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('wasp1388_kanban_columns', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('board_id')->constrained();
+            $table->foreignId('board_id')->constrained('wasp1388_kanban_boards');
             $table->integer('order');
             $table->timestamps();
         });
