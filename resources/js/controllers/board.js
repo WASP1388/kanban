@@ -1,6 +1,7 @@
 import Sortable from 'sortablejs';
+import { Controller } from '@hotwired/stimulus';
 
-export default class extends window.Controller {
+export default class extends Controller {
 
     static values = {
         taskAction:  String,
@@ -72,30 +73,5 @@ export default class extends window.Controller {
                 this.toast(this.failureMessageValue, 'danger')
             });
     }
-    /**
-     * Reorder the elements based on the new order
-     */
-    reorderElements() {
-        const params = {
-            model: this.modelValue,
-            items: [],
-        };
 
-        let elements = this.element.querySelectorAll(this.selectorValue);
-
-        elements.forEach((element, index) => {
-            params.items.push({
-                id: element.getAttribute('data-model-id'),
-                sortOrder: index,
-            })
-        });
-
-        axios
-            .post(this.actionValue, params)
-            .then(() => this.toast(this.successMessageValue))
-            .catch((error) => {
-                console.error(error);
-                this.toast(this.failureMessageValue, 'danger')
-            });
-        }
 }
