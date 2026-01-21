@@ -10,6 +10,8 @@ use WASP1388\Kanban\Orchid\Screens\BoardScreen;
 use WASP1388\Kanban\Orchid\Screens\BoardEditScreen;
 use WASP1388\Kanban\Orchid\Screens\BoardListScreen;
 use WASP1388\Kanban\Orchid\Screens\TaskTableScreen;
+use WASP1388\Kanban\Orchid\Screens\TaskCreateScreen;
+use WASP1388\Kanban\Orchid\Screens\TaskEditScreen;
 
 
 
@@ -22,12 +24,8 @@ Route::domain(config('platform.domain'))
         Route::screen('board/edit/{board?}', BoardEditScreen::class)->name('board.edit');
         Route::screen('boards', BoardListScreen::class)->name('board.list');
         Route::screen('tasks', TaskTableScreen::class)->name('task.table');
-
-        Route::get('task/create', [TaskController::class, 'create'])->name('task.create');
-        Route::post('task', [TaskController::class, 'store'])->name('task.store');
-        Route::get('task/{id}/edit', [TaskController::class, 'edit'])->name('task.edit');
-        Route::put('task/{id}', [TaskController::class, 'update'])->name('task.update');
-        Route::delete('task/{id}', [TaskController::class, 'destroy'])->name('task.destroy');
+        Route::screen('task/create', TaskCreateScreen::class)->name('task.create');
+        Route::screen('task/edit/{task}', TaskEditScreen::class)->name('task.edit');
 
         Route::post('board/task/order', [KanbanController::class, 'updateTaskOrder'])->name('board.task.update');
         Route::post('board/column/order', [KanbanController::class, 'updateColumnOrder'])->name('board.column.update');
