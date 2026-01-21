@@ -12,25 +12,23 @@ __pycache__/
 *.out
 
 # Dependencies
-vendor/
 node_modules/
-.venv/
-venv/
-.env
-.env.local
-*.env.*
-
-# Build directories
-dist/
-build/
-target/
-.gradle/
+vendor/
+composer.lock
+*.lock
+.cache/
 
 # Logs and temp files
 *.log
 *.tmp
 *.swp
 *.swo
+*.temp
+
+# Environment
+.env
+.env.local
+.env.*
 
 # Editors
 .vscode/
@@ -38,16 +36,32 @@ target/
 *.swp
 *.swo
 
-# System files
-.DS_Store
-Thumbs.db
-
-# Coverage
+# Build and distribution
+dist/
+build/
+target/
 coverage/
 htmlcov/
 .coverage
 
-# Cache directories
-.mypy_cache/
-.pytest_cache/
+# System files
+.DS_Store
+Thumbs.db
+
+# PHP specific
+*.phar
+.php_cs.cache
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# OS generated files
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Icon?
+desktop.ini
 ```
