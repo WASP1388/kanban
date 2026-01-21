@@ -24,10 +24,6 @@ class TaskTableScreen extends Screen
     public function query(): iterable
     {
         $tasks = Task::with('column', 'column.board')
-            ->filters()
-            ->filtersApply([
-                Task::class,
-            ])
             ->paginate();
 
         return [
@@ -77,20 +73,6 @@ class TaskTableScreen extends Screen
     public function layout(): iterable
     {
         return [
-            Layout::selection([
-                Select::make('column_id')
-                    ->fromModel(Column::class, 'name', 'id')
-                    ->empty()
-                    ->title('Фильтр по колонке'),
-                Select::make('board_id')
-                    ->fromModel(Board::class, 'name', 'id')
-                    ->empty()
-                    ->title('Фильтр по доске'),
-                Input::make('search')
-                    ->title('Поиск')
-                    ->placeholder('Поиск задач...'),
-            ]),
-            
             Layout::table('tasks', [
                 TD::make('id', 'ID')->sort(),
                 TD::make('name', 'Название')->sort(),

@@ -3,7 +3,7 @@
 namespace WASP1388\Kanban\Models;
 
 use Orchid\Screen\AsSource;
-use Orchid\Support\Traits\Filterable;
+use Orchid\Filters\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

@@ -15,6 +15,9 @@ use Orchid\Screen\Actions\ModalToggle;
 use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Quill;
 use Orchid\Screen\Fields\Relation;
+use Orchid\Screen\Actions\Button;
+
+use WASP1388\Kanban\Orchid\Layouts\BoardLayout;
 
 class BoardScreen extends Screen
 {
@@ -84,9 +87,13 @@ class BoardScreen extends Screen
 
     public function layout(): iterable
     {
+        $button = Button::make('Нажми меня')
+            ->method('exampleMethod') // Метод, который вызовется при нажатии
+            ->parameters(['id' => 1]); // Параметры
+        
         return [
-            Layout::view('kanban::board'),
-
+           // Layout::view('kanban::board'),
+            new BoardLayout('kanban::layouts.board', [$button]),
             Layout::modal('newColumnModal', Layout::rows([
                 Input::make('column.name')
                     ->title('Наименование')
