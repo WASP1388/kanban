@@ -14,7 +14,13 @@ class Task extends Model
 
     protected $table = 'wasp1388_kanban_tasks';
 
-    protected $fillable = ['column_id', 'name', 'order'];
+    protected $fillable = ['column_id', 'name', 'description', 'order'];
+
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'order' => 'integer',
+    ];
 
     public function column(): BelongsTo
     {
