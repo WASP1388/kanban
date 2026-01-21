@@ -44,7 +44,10 @@ class BoardListScreen extends Screen
         return [
             Link::make('Создать')
                 ->icon('pencil')
-                ->route('platform.kanban.board.edit')
+                ->route('platform.kanban.board.edit'),
+            Link::make('Таблица задач')
+                ->icon('list')
+                ->route('platform.kanban.task.table')
         ];
     }
 
